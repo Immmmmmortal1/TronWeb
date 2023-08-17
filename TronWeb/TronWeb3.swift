@@ -65,7 +65,9 @@ public class TronWeb3: NSObject {
         }
         let htmlSource = self.loadBundleResource(bundleName: "TronWeb", sourceName: "/TronIndex.html")
         let url = URL(fileURLWithPath: htmlSource)
-        self.webView.loadFileURL(url, allowingReadAccessTo: url)
+        DispatchQueue.main.async { [self] in
+            self.webView.loadFileURL(url, allowingReadAccessTo: url)
+        }
     }
 
     func loadBundleResource(bundleName: String, sourceName: String) -> String {
